@@ -7,12 +7,11 @@ import DrinkCard from '../Cards/DrinkCard';
 function App() {
   const [randomDrink, setRandomDrink] = useState([]);
   const [ingredientArr, setIngredientArr] = useState([]);
-  const [ingredientAmountArr, setIngredientAmountArr] = useState([]);
 
   return (
     <>
       <VStack>
-        <Text m={2} fontSize='6xl' fontWeight='bold'>Cocktail Generator</Text>
+        <Text m={2} fontSize='6xl' fontWeight='bold'>Random Sht</Text>
       </VStack>
       <VStack>
         <Button
@@ -20,22 +19,21 @@ function App() {
           onClick={() => {
             getRandomDrink().then((response) => {
               setRandomDrink(response);
-              setIngredientArr(Object.entries(response[0])
+              const ingredients = (Object.entries(response[0])
                 .filter((keyValueArr) => keyValueArr[0]
-                  .includes('strIngredient') && keyValueArr[1] !== null));
-              setIngredientAmountArr(Object.entries(response[0])
+                  .includes('strIngredient') && keyValueArr[1] !== null))
+                .map((item) => item.pop());
+              const ingredientAmounts = (Object.entries(response[0])
                 .filter((keyValueArr) => keyValueArr[0]
-                  .includes('strMeasure') && keyValueArr[1] !== null));
+                  .includes('strMeasure') && keyValueArr[1] !== null))
+                .map((item) => item.pop());
+              setIngredientArr(Object.entries(Object.assign(...ingredients.map((k, i) => ({ [k]: ingredientAmounts[i] })))));
             });
           }}
         >
           Get Random Drink
         </Button>
-        <Button onClick={() => {
-          console.warn(ingredientArr);
-          console.warn(ingredientAmountArr);
-        }
-        }>Test</Button>
+        <Button onClick={() => console.warn(ingredientArr)}>Test</Button>
       </VStack>
       <VStack>
         {randomDrink.map((drink, i) => (
@@ -45,6 +43,7 @@ function App() {
             glass={drink.strGlass}
             instructions={drink.strInstructions}
             drinkImage={drink.strDrinkThumb}
+            ingredientArr={ingredientArr}
           />
         ))}
       </VStack>
