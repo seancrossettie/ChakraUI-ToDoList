@@ -33,7 +33,6 @@ function App() {
         >
           Get Random Drink
         </Button>
-        <Button onClick={() => console.warn(ingredientArr)}>Test</Button>
       </VStack>
       <VStack>
         {randomDrink.map((drink, i) => (
