@@ -1,17 +1,19 @@
-import { Text, VStack } from '@chakra-ui/layout';
+import { Flex, Text, VStack } from '@chakra-ui/layout';
 import { Button } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import getRandomDrink from '../../helpers/data/drinkData';
 import DrinkCard from '../Cards/DrinkCard';
+import Sidebar from '../Sidebar/Sidebar';
 
 function App() {
   const [randomDrink, setRandomDrink] = useState([]);
   const [ingredientArr, setIngredientArr] = useState([]);
 
   return (
-    <>
+    <Flex>
+      <Sidebar />
       <VStack>
-        <Text m={2} fontSize='6xl' fontWeight='bold'>Random Sht</Text>
+        <Text m={2} fontSize='6xl' fontWeight='bold'>Random Drink</Text>
       </VStack>
       <VStack>
         <Button
@@ -46,7 +48,7 @@ function App() {
           />
         ))}
       </VStack>
-    </>
+    </Flex>
   );
 }
 
