@@ -13,7 +13,14 @@ const DrinkCard = ({
   drinkImage,
   ingredientArr,
 }) => (
-    <Box m={5} w='375px' rounded='20px' overflow='hidden' boxShadow='lg' borderWidth='1px' className='drink-card-body'>
+    <Box
+      m={5}
+      w='375px'
+      rounded='20px'
+      overflow='hidden'
+      boxShadow='0 4px 12px 0 rgba(0, 0, 0, 0.05)'
+      borderWidth='1px'
+    >
       <Image borderRadius='md' src={drinkImage} alt={drinkImage}/>
       <Box p='2' d='flex' flexDirection='column' alignContent='space-evenly'>
         <Text fontSize='xl'>{drinkName}</Text>
@@ -27,7 +34,7 @@ const DrinkCard = ({
       </Box>
         <Box mx={3}>
           <Text fontSize='sm' mt='2' fontStyle='italic' fontWeight='bold'>Instructions</Text>
-          <Text fontSize='sm' mb='1' fontStyle='italic'>{instructions}</Text>
+          <Text fontSize='sm' mb='1'>{instructions}</Text>
         </Box>
     </Box>
 );

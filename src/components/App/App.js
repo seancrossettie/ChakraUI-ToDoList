@@ -1,19 +1,20 @@
-import { Text, VStack } from '@chakra-ui/layout';
+import {
+  Flex
+} from '@chakra-ui/layout';
 import { Button } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import getRandomDrink from '../../helpers/data/drinkData';
 import DrinkCard from '../Cards/DrinkCard';
+import Sidebar from '../Sidebar/Sidebar';
 
 function App() {
   const [randomDrink, setRandomDrink] = useState([]);
   const [ingredientArr, setIngredientArr] = useState([]);
 
   return (
-    <>
-      <VStack>
-        <Text m={2} fontSize='6xl' fontWeight='bold'>Random Sht</Text>
-      </VStack>
-      <VStack>
+    <Flex flexDirection='row' justifyContent='space-around'>
+      <Sidebar />
+      <Flex flexDirection='column'>
         <Button
           m='8'
           onClick={() => {
@@ -33,8 +34,6 @@ function App() {
         >
           Get Random Drink
         </Button>
-      </VStack>
-      <VStack>
         {randomDrink.map((drink, i) => (
           <DrinkCard
             key={i}
@@ -45,8 +44,8 @@ function App() {
             ingredientArr={ingredientArr}
           />
         ))}
-      </VStack>
-    </>
+      </Flex>
+      </Flex>
   );
 }
 
